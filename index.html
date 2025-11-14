@@ -31,25 +31,10 @@
 
         /* Mobile Menu */
         #mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 320px;
-            height: 100vh;
-            background: rgba(30, 27, 75, 0.98);
-            backdrop-filter: blur(20px);
-            transition: right 0.4s ease;
-            z-index: 9999;
-            padding-top: 80px;
+            position: fixed;top: 0;right: -100%;width: 80%;max-width: 320px;height: 100vh;background: rgba(30, 27, 75, 0.98);backdrop-filter: blur(20px);transition: right 0.4s ease;z-index: 9999;padding-top: 80px;
         }
         #mobile-menu.open {right: 0;}
-        #mobile-menu a {
-            display: block;
-            padding: 16px 24px;
-            font-size: 1.2rem;
-            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
-        }
+        #mobile-menu a {display: block;padding: 16px 24px;font-size: 1.2rem;border-bottom: 1px solid rgba(139, 92, 246, 0.3);}
         #mobile-menu a:last-child {border-bottom: none;}
     </style>
 </head>
@@ -85,7 +70,7 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
+    <!-- Mobile Menu -->
     <div id="mobile-menu">
         <button id="close-menu" class="absolute top-6 left-6 text-3xl text-white">
             <i class="fas fa-times"></i>
@@ -97,7 +82,6 @@
         <a href="mailto:support@bspro.tools" class="text-purple-300 font-bold">Contact Support</a>
     </div>
 
-    <!--) -->
     <!-- Hero Section -->
     <section id="home" class="pt-32 pb-20 text-center px-6">
         <div class="container mx-auto max-w-5xl" data-aos="fade-up">
@@ -178,13 +162,13 @@
         </div>
     </section>
 
-    <!-- Supported iOS with Apple Logo -->
+    <!-- Supported iOS with Apple Logo - Fixed for Mobile -->
     <section id="devices" class="py-20 px-6">
         <div class="container mx-auto text-center">
             <h2 class="text-4xl md:text-5xl font-black mb-12" data-aos="fade-up">Supported iOS Versions</h2>
-            <div class="flex flex-col items-center justify-center gap-8">
+            <div class="flex flex-col items-center justify-center gap-10">
                 <i class="fab fa-apple text-9xl opacity-90" data-aos="zoom-in"></i>
-                <div class="grid grid-cols-3 gap-12 text-5xl font-black text-purple-300">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-5xl font-black text-purple-300 w-full max-w-4xl">
                     <div data-aos="zoom-in" data-aos-delay="100">iOS 18.7.1</div>
                     <div data-aos="zoom-in" data-aos-delay="200">iOS 26.0.1</div>
                     <div data-aos="zoom-in" data-aos-delay="300">iOS 26.1</div>
@@ -221,7 +205,7 @@
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/1234567890" target="_blank" class="floating-wa">
+    <a href="https://wa.me/+21624234557" target="_blank" class="floating-wa">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -233,25 +217,16 @@
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
         });
 
         // Mobile Menu Toggle
         const menuBtn = document.getElementById('menu-btn');
         const closeBtn = document.getElementById('close-menu');
         const mobileMenu = document.getElementById('mobile-menu');
-
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('open');
-        });
-        closeBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('open');
-        });
+        menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
     </script>
 </body>
 </html>
-
