@@ -28,9 +28,33 @@
         .ticker {background: rgba(139, 92, 246, 0.2);padding: 12px 0;overflow: hidden;white-space: nowrap;}
         .ticker span {display: inline-block;animation: ticker 20s linear infinite;}
         @keyframes ticker {0% {transform: translateX(100%);}100% {transform: translateX(-100%);}}
+
+        /* Mobile Menu */
+        #mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: rgba(30, 27, 75, 0.98);
+            backdrop-filter: blur(20px);
+            transition: right 0.4s ease;
+            z-index: 9999;
+            padding-top: 80px;
+        }
+        #mobile-menu.open {right: 0;}
+        #mobile-menu a {
+            display: block;
+            padding: 16px 24px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        #mobile-menu a:last-child {border-bottom: none;}
     </style>
 </head>
 <body class="text-white">
+
     <!-- Top Ticker -->
     <div class="ticker text-sm font-medium text-yellow-300">
         <span class="mx-8">
@@ -44,6 +68,8 @@
             <h1 class="text-3xl font-black tracking-tight">
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">BSPRO</span>
             </h1>
+
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8 text-lg font-medium">
                 <a href="#home" class="hover:text-purple-300 transition">Home</a>
                 <a href="#download" class="hover:text-purple-300 transition">Download</a>
@@ -51,10 +77,27 @@
                 <a href="#pricing" class="hover:text-purple-300 transition">Pricing</a>
                 <a href="mailto:support@bspro.tools" class="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 rounded-full font-bold glow-btn">Contact</a>
             </div>
-            <button class="md:hidden text-2xl"><i class="fas fa-bars"></i></button>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-3xl z-50">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu">
+        <button id="close-menu" class="absolute top-6 left-6 text-3xl text-white">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#home" class="hover:text-purple-300">Home</a>
+        <a href="#download" class="hover:text-purple-300">Download</a>
+        <a href="#resellers" class="hover:text-purple-300">Resellers</a>
+        <a href="#pricing" class="hover:text-purple-300">Pricing</a>
+        <a href="mailto:support@bspro.tools" class="text-purple-300 font-bold">Contact Support</a>
+    </div>
+
+    <!-- بقية الموقع بالضبط كما هو (لم أحذف أو أغير أي شيء) -->
     <!-- Hero Section -->
     <section id="home" class="pt-32 pb-20 text-center px-6">
         <div class="container mx-auto max-w-5xl" data-aos="fade-up">
@@ -116,7 +159,7 @@
         </div>
     </section>
 
-    <!-- Official Resellers - Only One in the Center -->
+    <!-- Official Reseller - Centered -->
     <section id="resellers" class="py-20 px-6 bg-purple-950">
         <div class="container mx-auto max-w-4xl">
             <h2 class="text-5xl font-black text-center mb-16" data-aos="fade-up">Official Reseller</h2>
@@ -186,6 +229,8 @@
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 1000, once: true });
+
+        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
@@ -193,6 +238,18 @@
             } else {
                 navbar.classList.remove('scrolled');
             }
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+        });
+        closeBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
         });
     </script>
 </body>
